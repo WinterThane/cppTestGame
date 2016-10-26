@@ -10,20 +10,28 @@ using namespace std;
 
 bool Game::run()
 {
+	drawArea.createSprite(0, '$');	
+
+	player = new Sprite(&drawArea, 0);
+
 	char key = ' ';
 
 	startTime = timeGetTime();
 	frameCount = 0;
 	lastTime = 0;
 
+	posx = 0;
+
 	while(key != 'q')
 	{
 		while (!getInput(&key))
 		{		
-			timerUpdate();
+			timerUpdate();			
 		}
-		cout << "You pressed: " << key << endl;
+		//cout << "You pressed: " << key << endl;
 	}
+
+	delete player;
 
 	cout << frameCount / ((timeGetTime() - startTime) / 1000) << " FPS " << endl;
 	cout <<  "End of the game " << endl;
@@ -48,6 +56,8 @@ void Game::timerUpdate()
 
 	if (currentTime < GAME_SPEED)
 		return;
+	
+	player->move(1, 0);
 
 	frameCount++;
 
