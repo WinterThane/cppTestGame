@@ -3,7 +3,7 @@
 #define GAME_H
 
 #include "drawEngine.h"
-#include "sprite.h"
+#include "character.h"
 
 class Game
 {
@@ -15,7 +15,7 @@ protected:
 	void timerUpdate(void);
 
 private:
-	Sprite *player;
+	Character *player;
 
 	double frameCount;
 	double startTime;

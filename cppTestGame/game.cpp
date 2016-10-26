@@ -12,7 +12,7 @@ bool Game::run()
 {
 	drawArea.createSprite(0, '$');	
 
-	player = new Sprite(&drawArea, 0);
+	player = new Character(&drawArea, 0);
 
 	char key = ' ';
 
@@ -28,6 +28,9 @@ bool Game::run()
 		{		
 			timerUpdate();			
 		}
+
+		player->keyPress(key);
+
 		//cout << "You pressed: " << key << endl;
 	}
 
@@ -56,8 +59,6 @@ void Game::timerUpdate()
 
 	if (currentTime < GAME_SPEED)
 		return;
-	
-	player->move(1, 0);
 
 	frameCount++;
 
