@@ -1,6 +1,6 @@
 #include "character.h"
 
-Character::Character(DrawEngine* de, int s_index, float x, float y, int lives, char up_key, char down_key, char left_key, char right_key) : Sprite(de, s_index, x, y, lives)
+Character::Character(Level *lvl,  DrawEngine* de, int s_index, float x, float y, int lives, char up_key, char down_key, char left_key, char right_key) : Sprite(lvl, de, s_index, x, y, lives)
 {
 	upKey = up_key;
 	downKey = down_key;

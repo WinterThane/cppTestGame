@@ -4,6 +4,7 @@
 
 #include "drawEngine.h"
 #include "character.h"
+#include "level.h"
 
 class Game
 {
@@ -16,6 +17,7 @@ protected:
 
 private:
 	Character *player;
+	Level *level;
 
 	double frameCount;
 	double startTime;

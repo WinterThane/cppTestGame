@@ -14,9 +14,16 @@ public:
 	void eraseSprite(int posx, int posy);
 	void drawSprite(int index, int posx, int posy);
 
+	void createBackgroundTile(int index, char c);
+
+	void setMap(char **);
+	void drawBackground(void);
+
 protected:
+	char **map;
 	int screenWidth, screenHeight;
 	char spriteImage[16];
+	char tileImage[16];
 
 private:
 	void gotoxy(int x, int y);

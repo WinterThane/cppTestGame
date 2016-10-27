@@ -3,6 +3,7 @@
 #define SPRITE_H
 
 #include "drawEngine.h"
+#include "level.h"
 
 enum
 {
@@ -19,7 +20,7 @@ struct vector
 class Sprite
 {
 public:
-	Sprite(DrawEngine *de, int s_index, float x = 1, float y = 1, int i_lives = 1);
+	Sprite(Level *l, DrawEngine *de, int s_index, float x = 1, float y = 1, int i_lives = 1);
 	~Sprite();
 
 	vector getPosition(void);
@@ -33,6 +34,7 @@ public:
 	virtual bool move(float x, float y);
 
 protected:
+	Level *level;
 	DrawEngine *drawArea;
 	vector pos;
 	int spriteIndex;
@@ -43,6 +45,8 @@ protected:
 
 	void draw(float x, float y);
 	void erase(float x, float y);
+
+	bool isValidLevelMove(int xpos, int ypos);
 };
 
 #endif

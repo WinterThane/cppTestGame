@@ -10,9 +10,16 @@ using namespace std;
 
 bool Game::run()
 {
-	drawArea.createSprite(0, '$');	
+	level = new Level(&drawArea, 30, 20);
 
-	player = new Character(&drawArea, 0);
+	drawArea.createBackgroundTile(TILE_EMPTY, ' ');
+	drawArea.createBackgroundTile(TILE_WALL, '+');
+
+	drawArea.createSprite(0, '$');	
+	player = new Character(level, &drawArea, 0);
+
+	level->draw();
+	level->addPlayer(player);
 
 	char key = ' ';
 
@@ -22,6 +29,8 @@ bool Game::run()
 
 	posx = 0;
 
+	player->move(0, 0);
+
 	while(key != 'q')
 	{
 		while (!getInput(&key))
@@ -29,15 +38,15 @@ bool Game::run()
 			timerUpdate();			
 		}
 
-		player->keyPress(key);
+		level->keyPress(key);
 
 		//cout << "You pressed: " << key << endl;
 	}
 
 	delete player;
 
-	cout << frameCount / ((timeGetTime() - startTime) / 1000) << " FPS " << endl;
-	cout <<  "End of the game " << endl;
+	//cout << frameCount / ((timeGetTime() - startTime) / 1000) << " FPS " << endl;
+	//cout <<  "End of the game " << endl;
 	system("pause");
 	return true;
 }
@@ -59,6 +68,8 @@ void Game::timerUpdate()
 
 	if (currentTime < GAME_SPEED)
 		return;
+
+	level->update();
 
 	frameCount++;
 

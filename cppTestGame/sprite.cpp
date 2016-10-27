@@ -1,6 +1,6 @@
 #include "sprite.h"
 
-Sprite::Sprite(DrawEngine* de, int s_index, float x, float y, int i_lives)
+Sprite::Sprite(Level *l, DrawEngine* de, int s_index, float x, float y, int i_lives)
 {
 	drawArea = de;
 	pos.x = x;
@@ -14,6 +14,8 @@ Sprite::Sprite(DrawEngine* de, int s_index, float x, float y, int i_lives)
 	facinDirection.y = 0;
 
 	classID = SPRITE_CLASSID;
+
+	level = l;
 }
 
 Sprite::~Sprite()
@@ -52,17 +54,24 @@ bool Sprite::isAlive()
 
 bool Sprite::move(float x, float y)
 {
-	erase(pos.x, pos.y);
+	int xpos = (int)pos.x + x;
+	int ypos = (int)pos.y + y;
 
-	pos.x += x;
-	pos.y += y;
+	if (isValidLevelMove(xpos, ypos))
+	{
 
-	facinDirection.x = x;
-	facinDirection.y = y;
+		erase(pos.x, pos.y);
 
-	draw(pos.x, pos.y);
+		pos.x += x;
+		pos.y += y;
 
-	return true;
+		facinDirection.x = x;
+		facinDirection.y = y;
+
+		draw(pos.x, pos.y);
+		return true;
+	}
+	return false;
 }
 
 void Sprite::draw(float x, float y)
@@ -73,4 +82,13 @@ void Sprite::draw(float x, float y)
 void Sprite::erase(float x, float y)
 {
 	drawArea->eraseSprite((int)x, (int)y);
+}
+
+bool Sprite::isValidLevelMove(int xpos, int ypos)
+{
+	if (level->level[xpos][ypos] != TILE_WALL)
+	{
+		return true;
+	}
+	return false;
 }

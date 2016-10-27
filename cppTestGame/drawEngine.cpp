@@ -12,11 +12,15 @@ DrawEngine::DrawEngine(int xSize, int ySize)
 	screenHeight = ySize;
 
 	cusrorVisibility(false); //set cursor visibility to false
+
+	map = 0;
 }
 
 DrawEngine::~DrawEngine()
 {
 	cusrorVisibility(true);	//set cursor visibility to true
+
+	gotoxy(0, screenHeight);
 }
 
 int DrawEngine::createSprite(int index, char c)
@@ -39,6 +43,36 @@ void DrawEngine::drawSprite(int index, int posx, int posy)
 {
 	gotoxy(posx, posy);	//go to correct location	
 	cout << spriteImage[index];	// draw the image
+}
+
+void DrawEngine::setMap(char **data)
+{
+	map = data;
+}
+
+void DrawEngine::createBackgroundTile(int index, char c)
+{
+	if(index >= 0  && index < 16)
+	{
+		tileImage[index] = c;
+	}
+}
+
+
+void DrawEngine::drawBackground()
+{
+	if(map)
+	{
+		for(int y = 0; y < screenHeight; y++)
+		{
+			gotoxy(0, y);
+
+			for(int x = 0; x < screenWidth; x++)
+			{
+				cout << tileImage[map[x][y]];
+			}
+		}
+	}
 }
 
 void DrawEngine::eraseSprite(int posx, int posy)
