@@ -7,8 +7,8 @@
 
 using std::list;
 
-class Character;
 class Sprite;
+class Character;
 
 enum
 {
@@ -34,10 +34,10 @@ public:
 	void draw(void);
 	bool keyPress(char c);
 
-	friend class Sprite;
-
 	void addEnemies(int num);
 	void addNPC(Sprite *spr);	
+
+	friend class Sprite;
 
 protected:
 	void createLevel(void);

@@ -10,8 +10,8 @@ Sprite::Sprite(Level *l, DrawEngine* de, int s_index, float x, float y, int i_li
 
 	numLives = i_lives;
 
-	facinDirection.x = 1;
-	facinDirection.y = 0;
+	facingDirection.x = 1;
+	facingDirection.y = 0;
 
 	classID = SPRITE_CLASSID;
 
@@ -64,8 +64,8 @@ bool Sprite::move(float x, float y)
 		pos.x += x;
 		pos.y += y;
 
-		facinDirection.x = x;
-		facinDirection.y = y;
+		facingDirection.x = x;
+		facingDirection.y = y;
 
 		draw(pos.x, pos.y);
 		return true;

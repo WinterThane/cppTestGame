@@ -9,7 +9,9 @@ enum
 {
 	SPRITE_CLASSID,
 	CHARACTER_CLASSID,
-	ENEMY_CLASSID
+	ENEMY_CLASSID,
+	FIREBALL_CLASSID,
+	MAGE_CLASSID
 };
 
 struct vector
@@ -36,15 +38,16 @@ public:
 
 	virtual bool move(float x, float y);
 
+	int classID;
+
 protected:
 	Level *level;
 	DrawEngine *drawArea;
 	vector pos;
 	int spriteIndex;
 	int numLives;
-
-	int classID;
-	vector facinDirection;
+	
+	vector facingDirection;
 
 	void draw(float x, float y);
 	void erase(float x, float y);

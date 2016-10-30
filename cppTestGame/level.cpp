@@ -33,6 +33,11 @@ Level::~Level()
 	}
 
 	delete[] level;
+
+	for (Iter = npc.begin(); Iter != npc.end(); Iter++)
+	{
+		delete *Iter;
+	}
 }
 
 void Level::createLevel(void)
@@ -86,7 +91,7 @@ void Level::update(void)
 {	
 	for(Iter = npc.begin(); Iter != npc.end(); Iter++)
 	{
-		//(*Iter)->idleUpdate();
+		(*Iter)->idleUpdate();
 
 		if((*Iter)->isAlive() == false)
 		{

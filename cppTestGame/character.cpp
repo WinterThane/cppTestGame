@@ -31,3 +31,15 @@ bool Character::keyPress(char c)
 
 	return false;
 }
+
+void Character::addLives(int num)
+{
+	Sprite::addLives(num);
+
+	if(isAlive())
+	{
+		pos.x = 1;
+		pos.y = 1;
+		move(0, 0);
+	}
+}

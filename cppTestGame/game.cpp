@@ -1,4 +1,5 @@
 #include "game.h"
+#include "drawEngine.h"
 
 #include <conio.h>
 #include <Windows.h>
@@ -6,7 +7,7 @@
 
 using namespace std;
 
-#define GAME_SPEED 33.33 // game speed - 30 FPS
+#define GAME_SPEED 33.33 // game speed - 30 FPS 
 
 bool Game::run()
 {
@@ -17,12 +18,13 @@ bool Game::run()
 
 	drawArea.createSprite(SPRITE_PLAYER, 'o');	
 	drawArea.createSprite(SPRITE_ENEMY, '@');
+	drawArea.createSprite(SPRITE_FIREBALL, '*');
 
-	player = new Character(level, &drawArea, 0);
+	player = new Mage(level, &drawArea, 0);
 
 	level->draw();
 	level->addPlayer(player);
-	level->addEnemies(3);
+	level->addEnemies(0);
 
 	char key = ' ';
 
@@ -50,7 +52,7 @@ bool Game::run()
 
 	//cout << frameCount / ((timeGetTime() - startTime) / 1000) << " FPS " << endl;
 	//cout <<  "End of the game " << endl;
-	system("pause");
+	//system("pause");
 	return true;
 }
 

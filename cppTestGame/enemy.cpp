@@ -1,6 +1,6 @@
 #include "enemy.h"
-#include "character.h"
 #include "level.h"
+#include "character.h"
 
 #include <math.h>
 #include <stdlib.h>
@@ -33,10 +33,16 @@ bool Enemy::move(float x, float y)
 		pos.x += x;
 		pos.y += y;
 
-		facinDirection.x = x;
-		facinDirection.y = y;
+		facingDirection.x = x;
+		facingDirection.y = y;
 
 		draw(pos.x, pos.y);
+
+		if((int)goal->getX() == xpos && (int)goal->getY() == ypos)
+		{
+			goal->addLives(-1);
+		}
+
 		return true;
 	}
 	return false;
@@ -50,7 +56,7 @@ void Enemy::idleUpdate(void)
 	}
 }
 
-void Enemy::addGoal(Character* g)
+void Enemy::addGoal(Character *g)
 {
 	goal = g;
 }

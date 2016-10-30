@@ -3,8 +3,8 @@
 #define GAME_H
 
 #include "drawEngine.h"
-#include "character.h"
 #include "level.h"
+#include "mage.h"
 
 class Game
 {
@@ -16,7 +16,7 @@ protected:
 	void timerUpdate(void);
 
 private:
-	Character *player;
+	Mage *player;
 	Level *level;
 
 	double frameCount;
