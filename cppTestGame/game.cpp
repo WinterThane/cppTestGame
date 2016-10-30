@@ -13,13 +13,16 @@ bool Game::run()
 	level = new Level(&drawArea, 30, 20);
 
 	drawArea.createBackgroundTile(TILE_EMPTY, ' ');
-	drawArea.createBackgroundTile(TILE_WALL, '+');
+	drawArea.createBackgroundTile(TILE_WALL, 219);
 
-	drawArea.createSprite(0, '$');	
+	drawArea.createSprite(SPRITE_PLAYER, 'o');	
+	drawArea.createSprite(SPRITE_ENEMY, '@');
+
 	player = new Character(level, &drawArea, 0);
 
 	level->draw();
 	level->addPlayer(player);
+	level->addEnemies(3);
 
 	char key = ' ';
 

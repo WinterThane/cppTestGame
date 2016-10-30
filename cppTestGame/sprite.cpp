@@ -59,7 +59,6 @@ bool Sprite::move(float x, float y)
 
 	if (isValidLevelMove(xpos, ypos))
 	{
-
 		erase(pos.x, pos.y);
 
 		pos.x += x;
@@ -91,4 +90,9 @@ bool Sprite::isValidLevelMove(int xpos, int ypos)
 		return true;
 	}
 	return false;
+}
+
+void Sprite::idleUpdate(void)
+{
+	//for inheritance
 }

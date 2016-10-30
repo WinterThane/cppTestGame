@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="character.h" />
     <ClInclude Include="drawEngine.h" />
+    <ClInclude Include="enemy.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="sprite.h" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="character.cpp" />
     <ClCompile Include="drawEngine.cpp" />
+    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />

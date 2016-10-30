@@ -1,5 +1,6 @@
 #include "level.h"
 #include "character.h"
+#include "enemy.h"
 
 #include <stdlib.h>
 
@@ -83,4 +84,44 @@ bool Level::keyPress(char c)
 
 void Level::update(void)
 {	
+	for(Iter = npc.begin(); Iter != npc.end(); Iter++)
+	{
+		//(*Iter)->idleUpdate();
+
+		if((*Iter)->isAlive() == false)
+		{
+			Sprite *temp = *Iter;
+
+			Iter--;
+			delete temp;
+			npc.remove(temp);
+		}
+	}
+}
+
+void Level::addEnemies(int num)
+{
+	int i = num;
+
+	while(i > 0)
+	{
+		int xpos = int(float(rand() % 100 / 100) * (width - 2) + 1);
+		int ypos = int(float(rand() % 100 / 100) * (height - 2) + 1);
+
+		if(level[xpos][ypos] != TILE_WALL)
+		{
+			Enemy *temp = new Enemy(this, drawArea, SPRITE_ENEMY, (float)xpos, (float)ypos);
+
+			temp->addGoal(player);
+
+			addNPC((Sprite *) temp);
+
+			i--;
+		}
+	}
+}
+
+void Level::addNPC(Sprite* spr)
+{
+	npc.push_back(spr);
 }

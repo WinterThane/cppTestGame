@@ -8,7 +8,8 @@
 enum
 {
 	SPRITE_CLASSID,
-	CHARACTER_CLASSID
+	CHARACTER_CLASSID,
+	ENEMY_CLASSID
 };
 
 struct vector
@@ -30,6 +31,8 @@ public:
 	virtual void addLives(int num = 1);
 	int getLives(void);
 	bool isAlive(void);
+
+	virtual void idleUpdate(void);
 
 	virtual bool move(float x, float y);
 

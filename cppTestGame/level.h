@@ -3,8 +3,19 @@
 #define LEVEL_H
 
 #include "drawEngine.h"
+#include <list>
+
+using std::list;
 
 class Character;
+class Sprite;
+
+enum
+{
+	SPRITE_PLAYER,
+	SPRITE_ENEMY,
+	SPRITE_FIREBALL
+};
 
 enum
 {
@@ -25,6 +36,9 @@ public:
 
 	friend class Sprite;
 
+	void addEnemies(int num);
+	void addNPC(Sprite *spr);	
+
 protected:
 	void createLevel(void);
 
@@ -36,6 +50,10 @@ private:
 
 	Character *player;
 	DrawEngine *drawArea;
+
+public:
+	list <Sprite *> npc;
+	list <Sprite *>::iterator Iter;
 };
 
 #endif
